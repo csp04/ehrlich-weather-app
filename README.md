@@ -59,7 +59,7 @@ To run this project, you will need to add the following environment variables to
 
 `REACT_APP_AUTH0_CLIENTID`
 
-`REACT_APP_WEATHER_APIKEY` - you can get your API KEY on openwearhermap.org
+`REACT_APP_WEATHER_APIKEY` - you can get your API KEY on openweathermap.org
 
 `REACT_APP_WEATHER_URL` - https://api.openweathermap.org/data/2.5/weather
 
