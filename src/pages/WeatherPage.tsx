@@ -24,8 +24,8 @@ export default function WeatherPage() {
 
   return (
     <div className="mt-40 flex flex-col items-end space-y-20">
-      <table className="w-full border border-black">
-        <thead className="bg-gray-200">
+      <table className="w-full border border-gray-400">
+        <thead className="bg-gray-100">
           <tr className="text-sm h-[32px]">
             <th>Date (mm/dd/yyyy)</th>
             <th>Temp (F)</th>
