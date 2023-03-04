@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaGithub } from 'react-icons/fa';
 
 export default function LandingPage() {
   return (
@@ -7,16 +8,14 @@ export default function LandingPage() {
         Ehrlich Weather Forecast
       </div>
       <div className="space-y-4">
-        <div className="text-sm">
-          Please login with your Github user to use the application and view the
-          weather in your city.
-        </div>
         <button
           className="border border-gray-400
                        px-4 py-1
-                       rounded"
+                       rounded
+                       flex items-center justify-center
+                       space-x-2"
         >
-          Login
+          <FaGithub /> <span>Login with Github</span>
         </button>
       </div>
     </div>
