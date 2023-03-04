@@ -11,8 +11,15 @@ function App() {
   const { isLoading, isAuthenticated } = useAuth0();
 
   return (
-    <div className="flex flex-col h-screen">
-      <header className="border-b border-gray-300 h-[50px] flex items-center px-4">
+    <div
+      className="flex flex-col h-screen 
+                  relative
+                  text-white
+                  before:absolute before:bg-weather-app-bg before:bg-no-repeat 
+                  before:bg-center before:w-full before:h-full before:top-0 
+                  before:left-0 before:z-[-1]"
+    >
+      <header className="border-b border-gray-300 h-[50px] flex items-center px-4 bg-white/20 backdrop-blur-sm">
         <NavBar />
       </header>
       <main className="flex-grow container mx-auto px-4">
