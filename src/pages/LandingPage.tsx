@@ -4,9 +4,9 @@ import { FaGithub } from 'react-icons/fa';
 export default function LandingPage() {
   return (
     <div className="mt-40 space-y-4">
-      <div className="text-4xl font-bold tracking-tight">
+      <h2 className="text-4xl font-bold tracking-tight">
         Ehrlich Weather Forecast
-      </div>
+      </h2>
       <div className="space-y-4">
         <button
           className="border border-gray-400
