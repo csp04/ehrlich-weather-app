@@ -1,9 +1,26 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import weatherApi from '../api/weather-api';
+
 import Button from '../components/Button';
+import WeatherModel from '../models/weather-model';
 
 export default function WeatherPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [model, setModel] = useState<WeatherModel | null>(null);
+
+  useEffect(() => {
+    const city = searchParams.get('city');
+
+    if (!city) {
+      navigate('/');
+      return;
+    }
+
+    weatherApi.getWeather(city).then(setModel);
+  }, [navigate, searchParams]);
 
   return (
     <div className="mt-40 flex flex-col items-end space-y-20">
@@ -19,14 +36,24 @@ export default function WeatherPage() {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-center h-20">
-            <td>04/04/2004</td>
-            <td>271.49</td>
-            <td className="hidden md:table-cell">overcast clouds</td>
-            <td className="hidden md:table-cell">Clouds</td>
-            <td className="hidden md:table-cell">1034</td>
-            <td className="hidden md:table-cell">45</td>
-          </tr>
+          {model && (
+            <tr className="text-center h-20">
+              <td>{moment(model.dt * 1000).format('MM/DD/YYYY')}</td>
+              <td>{model.main.temp}</td>
+              <td className="hidden md:table-cell">
+                {model.weather && model.weather.length > 0
+                  ? model.weather[0].description
+                  : ''}
+              </td>
+              <td className="hidden md:table-cell">
+                {model.weather && model.weather.length > 0
+                  ? model.weather[0].main
+                  : ''}
+              </td>
+              <td className="hidden md:table-cell">{model.main.pressure}</td>
+              <td className="hidden md:table-cell">{model.main.humidity}</td>
+            </tr>
+          )}
         </tbody>
       </table>
       <Button onClick={() => navigate('/')}>Back</Button>
