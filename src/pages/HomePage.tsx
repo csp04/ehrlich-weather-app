@@ -1,10 +1,20 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React from 'react';
+import React, { useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 
 export default function HomePage() {
   const { user } = useAuth0();
+  const navigate = useNavigate();
+  const city = useRef('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (city.current.trim() === '') return;
+    navigate(`/weather?city=${city.current}`);
+  };
 
   return (
     <div className="mt-40 flex flex-col items-center space-y-14">
@@ -16,18 +26,21 @@ export default function HomePage() {
           </>
         )}
       </div>
-      <div className="flex flex-col items-center space-y-4">
+
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="flex flex-col items-center space-y-4"
+      >
         <div className="border border-gray-400 flex items-center px-4 py-1 space-x-2 rounded">
           <FaSearch />
           <input
             type="text"
             className="outline-none text-sm w-[300px] h-[40px]"
+            onChange={(e) => (city.current = e.target.value)}
           />
         </div>
-        <Button onClick={() => {}} className="font-semibold uppercase">
-          Display Weather
-        </Button>
-      </div>
+        <Button className="font-semibold uppercase">Display Weather</Button>
+      </form>
     </div>
   );
 }
