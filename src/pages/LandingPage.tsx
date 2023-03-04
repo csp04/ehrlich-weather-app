@@ -11,10 +11,10 @@ export default function LandingPage() {
         Welcome to the weather forecast web application.
       </div>
       <div className="space-y-4">
-        <p>
+        <div>
           Please login with your Github user to use the application and view the
           weather in your city.
-        </p>
+        </div>
         <Button onClick={() => loginWithRedirect()}>
           <span>Login</span>
         </Button>
