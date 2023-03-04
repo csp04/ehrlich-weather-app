@@ -8,7 +8,7 @@ export default function HomePage() {
 
   return (
     <div className="mt-40 flex flex-col items-center space-y-14">
-      <div className="flex flex-col items-center space-y-4">
+      <div className="hidden md:flex flex-col items-center space-y-4">
         {user && (
           <>
             <span className="font-semibold">{user.name}</span>
