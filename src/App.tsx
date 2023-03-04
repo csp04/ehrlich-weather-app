@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import WeatherPage from './pages/WeatherPage';
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
 
   return (
     <div className="flex flex-col h-screen">
@@ -20,9 +20,24 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={isAuthenticated ? <HomePage /> : <LandingPage />}
+              element={
+                isLoading ? null : isAuthenticated ? (
+                  <HomePage />
+                ) : (
+                  <LandingPage />
+                )
+              }
             />
-            <Route path="/weather" element={<WeatherPage />} />
+            <Route
+              path="/weather"
+              element={
+                isLoading ? null : isAuthenticated ? (
+                  <WeatherPage />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
           </Routes>
         </BrowserRouter>
       </main>
